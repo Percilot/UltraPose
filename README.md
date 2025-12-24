@@ -1,6 +1,6 @@
 # UltraPose
 
-This project aims to generate high-fidelity and behaviorally diverse ultrasonic data for augmenting datasets in identification, and is particularly effective when only a few real samples are available.
+This project aims to generate high-fidelity ultrasonic data with rich kinetic diversity to support few-shot ultrasonic sensing.
 
 requirement.txt: required environments.
 
