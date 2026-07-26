@@ -1,15 +1,49 @@
 # UltraPose
 
-This project aims to generate high-fidelity ultrasonic data with rich kinetic diversity to support few-shot ultrasonic sensing.
+UltraPose is a few-shot ultrasonic gesture recognition framework based on diversity-aware data synthesis. Instead of training a fixed few-shot classifier directly from a handful of real samples, UltraPose learns to generate diverse virtual ultrasonic samples, then lets users train a gesture classifier that fits their own device budget.
 
-requirement.txt: required environments.
+The key idea is that intra-class gesture diversity is mainly shaped by two physical factors:
 
-gen_cond.py: generate speed and position shift embeddings (conditions) matrix for two instances.
+- **Gesture speed**, reflected by Doppler-related time-frequency changes.
+- **Hand-to-transceiver distance**, reflected by propagation-delay changes in the ultrasonic channel.
 
-dataset.py: generate dataset from files.
+UltraPose encodes the relative shifts of these two factors between gesture instances and uses them to condition **ShiftNet**, a supervised U-Net model for acoustic sensing data generation.
 
-model.py: architecture of conditional Unet.
+## Figure Highlights
 
-train.py: run to train UltraPose model.
+**Customized few-shot sensing workflow.**
 
-utils.py: save/load model function.
+![1785064929579](image/README/1785064929579.jpg)
+
+**ShiftNet condition injection and generation architecture.**
+
+![1785064926419](image/README/1785064926419.png)
+
+## Paper
+
+This repository accompanies:
+
+**Few-shot Ultrasonic Gesture Recognition via Diversity-aware Data Generation**
+
+The paper studies few-shot ultrasonic human gesture recognition (HGR) on commodity audio devices. In the reported experiments, UltraPose achieves **86.0%**, **89.5%**, and **96.0%** accuracy under 2-shot, 4-shot, and 6-shot settings, respectively, outperforming prior few-shot acoustic HGR methods and a wireless data synthesis baseline.
+
+## Repository Contents
+
+```text
+.
+|-- dataset.py                     # Gen dataset for paired source/target samples and shift conditions
+|-- model.py                       # Conditioned U-Net / ShiftNet backbone
+|-- train.py                       # Training entry point
+|-- utils.py                       # Model save/load helpers
+|-- preprocess/
+|   `-- gen_train_dataset.py       # Builds paired .npy training data from .mat ultrasonic features
+|-- figure/                        # Paper figures and editable figure sources
+|-- requirements.txt               # Original environment export
+`-- README.md
+```
+
+This release focuses on the data-preparation and ShiftNet training pipeline. Signal acquisition, classifier training/evaluation, and sample generation scripts are not included in the current repository snapshot.
+
+## License
+
+This project is released under the MIT License. See `LICENSE` for details.
