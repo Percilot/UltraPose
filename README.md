@@ -42,7 +42,7 @@ The paper studies few-shot ultrasonic human gesture recognition (HGR) on commodi
 `-- README.md
 ```
 
-This release focuses on the data-preparation and ShiftNet training pipeline. Signal acquisition, classifier training/evaluation, and sample generation scripts are not included in the current repository snapshot.
+This release focuses on the data-preparation and ShiftNet training pipeline. Signal acquisition, classifier training/evaluation.
 
 ## License
 
