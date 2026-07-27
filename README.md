@@ -17,7 +17,7 @@ UltraPose encodes the relative shifts of these two factors between gesture insta
 
 **ShiftNet condition injection and generation architecture.**
 
-![1785165408792](image/README/1785165408792.jpg)
+![1785167689550](image/README/1785167689550.jpg)
 
 ## Paper
 
